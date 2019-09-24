@@ -1,25 +1,26 @@
 import React from 'react'
 import { BrowserRouter, Route } from 'react-router-dom'
-import LandingPage from './landing/LandingPage'
-import Projects from './projects/Projects'
-import Tasks from './tasks/Tasks'
 import Header from './header/Header'
-import AboutUs from './aboutUs/AboutUs'
+import LandingView from '../views/landingView/LandingView'
+import ProjectsView from '../views/projectsView/ProjectsView'
+import AboutView from '../views/aboutView/AboutView'
+import TasksView from '../views/tasksView/TasksView'
+import './App.css'
 
 const App = () => {
-    return (
-      <div>
-        <BrowserRouter>
-          <Header />
-          <div className='ui container'>
-            <Route path='/' exact component={ LandingPage } />
-            <Route path='/projects' exact component={ Projects } />
-            <Route path='/about-us' exact component={ AboutUs } />
-            <Route path='/tasks' exact component={ Tasks } />
-          </div>
-        </BrowserRouter>
-      </div>
-    )
+  return (
+    <div>
+      <BrowserRouter>
+        <Header />
+        <div className='ui container'>
+          <Route path='/' exact component={ LandingView } />
+          <Route path='/projects' exact component={ ProjectsView } />
+          <Route path='/projects/:id/tasks' exact component={ TasksView } />
+          <Route path='/about' exact component={ AboutView } />
+        </div>
+      </BrowserRouter>
+    </div>
+  )
 }
 
 export default App
