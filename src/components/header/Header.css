@@ -1,11 +1,10 @@
 #header-menu {
   background-color: #00796B;
-}
-
-#btn-more {
-  margin-left: 16px;
+  
+  padding-left: 8px;
+  padding-right: 8px;
 }
 
 #username {
-  margin-left: 8px;
+  margin-left: 6px;
 }

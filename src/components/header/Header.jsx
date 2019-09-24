@@ -1,37 +1,45 @@
 import React from 'react'
 import { Menu } from 'semantic-ui-react'
-import { Link } from 'react-router-dom'
-import { Button, Image, Icon } from 'semantic-ui-react'
+import { Image } from 'semantic-ui-react'
 import './Header.css'
 
 class Header extends React.Component {
 
-  render() {
-    return (
-      <Menu inverted id='header-menu'>
+  state = { activeItem: 'Projects' }
 
-        <div className='item'>
-          <img 
-            src='https://cdn.freebiesupply.com/logos/large/2x/jira-logo-black-and-white.png' 
-            alt='jira'
-            />
-        </div>
-        <Link
-          className='item' 
-          to='/projects'>
-            Projects
-        </Link>
-        <Link
-          className='item' 
-          to='/about-us'>
-            About Us
-        </Link>
-        <div className='right menu item'>
-          <Image src='https://randomuser.me/api/portraits/men/41.jpg' 
-            avatar />
-          <span id='username'>John Doe</span>
-          <Icon id='btn-more' name='sort down' />
-        </div>
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
+  render() {
+    const { activeItem } = this.state
+    return (
+      <Menu secondary inverted id='header-menu'>
+
+        <Menu.Item>
+          THIS IS A LOGO
+        </Menu.Item>
+
+        <Menu.Item
+          name='Projects'
+          active={activeItem === 'Projects'}
+          onClick={this.handleItemClick}>
+        </Menu.Item>
+
+        <Menu.Item
+          name='About'
+          active={activeItem === 'About'}
+          onClick={this.handleItemClick}>
+        </Menu.Item>
+
+        <Menu.Menu position='right'>
+          <Menu.Item
+            name='loggedUser'
+            active={activeItem === 'loggedUser'}
+            onClick={this.handleItemClick}>
+            <Image src='https://randomuser.me/api/portraits/men/41.jpg' 
+              avatar/>
+            <span id='username'>John Doe</span>
+          </Menu.Item>
+        </Menu.Menu>
 
       </Menu>
     )
