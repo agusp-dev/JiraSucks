@@ -1,14 +1,12 @@
 import React from 'react'
 import { Container } from 'semantic-ui-react'
-import ProjectList from '../../components/projectList/ProjectList'
+import { ProjectsView as CProjectsView } from '../../components'
 
 class ProjectsView extends React.Component {
 
   render() {
     return (
-      <Container>
-        <ProjectList />
-      </Container>
+      <CProjectsView />
     )
   }
 }

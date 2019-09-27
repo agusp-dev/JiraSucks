@@ -1,46 +1,49 @@
 import React from 'react'
-import { Container, Card, Button, Item, Grid } from 'semantic-ui-react'
 import ProjectCard from '../projectCard/ProjectCard'
-import './ProjectList.css'
+import { fakeDb } from '../../utils'
+import { Card } from 'semantic-ui-react'
+
 
 class ProjectList extends React.Component {
 
-  data = [
-    { name:'Project 1', description:'Description 1' },
-    { name:'Project 2', description:'Description 2' },
-    { name:'Project 3', description:'Description 3' },
-    { name:'Project 4', description:'Description 4' },
-    { name:'Project 5', description:'Description 5' },
-    { name:'Project 6', description:'Description 6' }
-  ]
+  state = {
+    projects: []
+  }
+
+  onProjectSelected = id => {
+    console.log( 'onProjectSelected', id )
+    //todo dispatch
+  }
+
+  componentDidMount() {
+    this.setState({ projects: fakeDb.getProjectList() })
+  }
 
   render() {
     return (
-      <Container >
-
-        <Grid divided='vertically'>
-          <Grid.Row columns={2}>
-            <Grid.Column textAlign='left'>
-              <h2>My Projects</h2>
-            </Grid.Column>
-            <Grid.Column textAlign='right'>
-              <Button color='orange'>New Project</Button>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-        
-        <Card.Group>
-          {this.data.map( project => {
-            return (
-              <ProjectCard 
-                name={project.name} 
-                description={project.description}/>
-            )
-          })}
-        </Card.Group>
-      </Container>
+      <Card.Group>
+        {this.state.projects && this.state.projects.length > 0
+          ? (
+            this.state.projects.map( project => {
+              return (
+                <ProjectCard
+                  key={project.id}
+                  id={project.id} 
+                  name={project.name} 
+                  description={project.description}
+                  onProjectSelected={this.onProjectSelected}/>
+              )
+            })
+          )
+          : (
+            <div>
+              <p>No projects</p>
+            </div>
+          )
+        }
+      </Card.Group>
     )
   }
 }
 
-export default ProjectList
+export { ProjectList }
