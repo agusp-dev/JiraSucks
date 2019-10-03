@@ -8,3 +8,10 @@
 #username {
   margin-left: 6px;
 }
+
+#logo {
+  font-family: 'Roboto Mono', monospace;
+  color: #fff;
+  font-size: 18px;
+  margin-right: 24px;
+}

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Menu } from 'semantic-ui-react'
-import { Image } from 'semantic-ui-react'
+import { Menu, Image } from 'semantic-ui-react'
 import './Header.css'
+import ic_projects from '../../assets/icons/ic_projects.png'
 
 class Header extends React.Component {
 
@@ -16,23 +16,20 @@ class Header extends React.Component {
     const { activeItem } = this.state
     return (
       <Menu secondary inverted id='header-menu'>
-        <Menu.Item>
-          THIS IS A LOGO
+
+        <Menu.Item id='logo'>
+          JIRASUCKS
         </Menu.Item>
+
         <Menu.Item 
           as={Link}
+          icon='home'
           to='/projects'
           name='Projects'
           active={activeItem === 'Projects'}
           onClick={this.changeActiveItem}>
         </Menu.Item>
-        <Menu.Item
-          as={Link}
-          to='/about'
-          name='About'
-          active={activeItem === 'About'}
-          onClick={this.changeActiveItem}>
-        </Menu.Item>
+
         <Menu.Menu position='right'>
           <Menu.Item
             name='loggedUser'
@@ -43,6 +40,7 @@ class Header extends React.Component {
             <span id='username'>John Doe</span>
           </Menu.Item>
         </Menu.Menu>
+        
       </Menu>
     )
   }
