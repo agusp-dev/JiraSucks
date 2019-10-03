@@ -26,15 +26,13 @@ const deleteProject = id => {
 
 const getTasksByProject = id => {
   const project = getProject(id)
-  if (project) {
-    return getTaskList(id)
-  }
+  if (!project) return []
+  return getTaskList(id)
 }
 
 const getTaskList = id => {
-  if (tasksData.length < 1) return
   const projectTasks = tasksData.find( item => item.project === id )
-  if (!projectTasks) return
+  if (!projectTasks) return []
   return projectTasks.tasks
 }
 
@@ -82,7 +80,7 @@ let tasksData = [
         storyPoints: 1,
         plannedHours: 3,
         workedHours: 0,
-        state: states.TODO
+        state: states.DONE
       }
     ] 
   },

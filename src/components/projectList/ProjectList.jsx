@@ -2,6 +2,7 @@ import React from 'react'
 import ProjectCard from '../projectCard/ProjectCard'
 import { fakeDb } from '../../utils'
 import { Card } from 'semantic-ui-react'
+import { withRouter } from 'react-router-dom'
 
 
 class ProjectList extends React.Component {
@@ -10,9 +11,11 @@ class ProjectList extends React.Component {
     projects: []
   }
 
-  onProjectSelected = id => {
-    console.log( 'onProjectSelected', id )
-    //todo dispatch
+  onProjectSelected = ( id, name ) => {    
+    this.props.history.push(
+      `/projects/${id}/tasks`, 
+      { projectId: id, projectName: name }
+    )
   }
 
   componentDidMount() {
@@ -46,4 +49,4 @@ class ProjectList extends React.Component {
   }
 }
 
-export { ProjectList }
+export default withRouter(ProjectList)

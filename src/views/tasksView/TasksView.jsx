@@ -1,10 +1,11 @@
 import React from 'react'
+import { TasksView as CTasksView } from '../../components'
 
 class TasksView extends React.Component {
 
   render() {
     return (
-      <div>Tasks View</div>
+      <CTasksView data={this.props.location.state}/>
     )
   }
 }

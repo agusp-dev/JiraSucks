@@ -1,9 +1,9 @@
 import React from 'react'
-import { ProjectList } from '../../components'
+import ProjectList from '../../components/projectList/ProjectList'
 import { fakeDb } from '../../utils/fakeDb'
 import { 
   Button, Grid, Modal, Form,
-   Input, Message, TextArea, Icon
+   Input, Message, TextArea
 } from 'semantic-ui-react'
 
 
