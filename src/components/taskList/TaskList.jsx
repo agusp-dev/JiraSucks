@@ -9,7 +9,8 @@ const headerStyle = (bgColor, boColor) => {
     backgroundColor: bgColor,
     border: `1px solid ${boColor}`,
     borderRadius: 4,
-    padding: '8px 16px'
+    padding: '8px 16px',
+    textAlign: 'center'
   }
 }
 
@@ -19,16 +20,15 @@ class TaskList extends React.Component {
     tasks: []
   }
 
-  UNSAFE_componentWillReceiveProps(nextStates) {
-    if ( !isEqual(this.state.tasks, nextStates.tasks) ) {
-      this.setState({ 
-        tasks: [...nextStates.tasks]  
-      })
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (!isEqual(this.state.tasks, nextProps.tasks)) {
+      this.setState({ tasks: nextProps.tasks })
     }
   }
 
   render() {
     const { listName, backgroundColor, borderColor, icon } = this.props
+    const { tasks } = this.state
     return (
 
       <div>
@@ -40,11 +40,11 @@ class TaskList extends React.Component {
             inverted/>
         </div>
 
-        <div>
-          {this.state.tasks && this.state.tasks.length > 0
+        <div id='task-list'>
+          {tasks && tasks.length > 0
             ? (
               <Card.Group itemsPerRow='one'>
-                {this.state.tasks.map( task => {
+                {tasks.map( task => {
                   return (
                     <TaskCard 
                       key={task.id}

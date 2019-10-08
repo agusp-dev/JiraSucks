@@ -7,10 +7,6 @@ import { withRouter } from 'react-router-dom'
 
 class ProjectList extends React.Component {
 
-  state = {
-    projects: []
-  }
-
   onProjectSelected = ( id, name ) => {    
     this.props.history.push(
       `/projects/${id}/tasks`, 
@@ -18,16 +14,13 @@ class ProjectList extends React.Component {
     )
   }
 
-  componentDidMount() {
-    this.setState({ projects: fakeDb.getProjectList() })
-  }
-
   render() {
+    const { projects } = this.props
     return (
       <Card.Group>
-        {this.state.projects && this.state.projects.length > 0
+        {projects && projects.length > 0
           ? (
-            this.state.projects.map( project => {
+            projects.map( project => {
               return (
                 <ProjectCard
                   key={project.id}

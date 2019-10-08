@@ -10,6 +10,7 @@ import {
 class ProjectsView extends React.Component {
   
   state = {
+    projects: [],
     createProjectModalOpen: false,
     showMissingParametersMsg: false
   }
@@ -33,16 +34,28 @@ class ProjectsView extends React.Component {
     const name = e.target.name.value
     const description = e.target.description.value
     if (!name || !description) { return this.showMissingParameters(true) }
-    fakeDb.insertProject({ name, description })
+    this.insertProject({ name, description })
     this.closeModal()
+  }
+
+  insertProject = project => {
+    fakeDb.insertProject( project )
+    this.setState({ projects: [... fakeDb.getProjectList()] })
   }
 
   showMissingParameters = show => {
     this.setState({ showMissingParametersMsg: show })
   }
 
+  componentDidMount() {
+    this.setState({ projects: fakeDb.getProjectList() })
+  }
+
   render() {
-    const { createProjectModalOpen, showMissingParametersMsg } = this.state
+    const { projects, 
+            createProjectModalOpen, 
+            showMissingParametersMsg } = this.state
+
     return (
       <div>
         <Grid divided='vertically'>
@@ -60,7 +73,7 @@ class ProjectsView extends React.Component {
           </Grid.Row>
         </Grid>
 
-        <ProjectList />
+        <ProjectList projects={ projects }/>
 
         <Modal 
           closeIcon

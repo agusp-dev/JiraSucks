@@ -19,6 +19,12 @@ const getLastId = () => {
 	return Math.max.apply( Math, projectsData.map( project => project.id ) )
 }
 
+const getLastTaskId = tasks => {
+  return ( tasks.length > 0 )
+    ? Math.max.apply( Math, tasks.map( task => task.id ) )
+    : 0
+}
+
 const deleteProject = id => {
   if (projectsData.length < 1) return
   projectsData = projectsData.filter( project => project.id !== id )
@@ -36,9 +42,13 @@ const getTaskList = id => {
   return projectTasks.tasks
 }
 
-
-
-
+const insertTask = task => {
+  const project = getProject(task.projectId)
+  if (!project) return
+  const projectTasks = getTaskList(task.projectId)
+  task.id = getLastTaskId(projectTasks) + 1
+  projectTasks.push( task )
+}
 
 
 
@@ -113,5 +123,6 @@ export const fakeDb = {
   getProjectList,
   insertProject,
   deleteProject,
-  getTasksByProject
+  getTasksByProject,
+  insertTask
 }
