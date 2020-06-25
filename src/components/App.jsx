@@ -12,10 +12,10 @@ import './App.css'
 const App = () => {
   return (
     <BrowserRouter>
+      <Route path='/' exact component={ LandingView } />
       <Header />
       <main >
         <Container id='main-panel'>
-          <Route path='/' exact component={ LandingView } />
           <Route path='/projects' exact component={ ProjectsView } />
           <Route path='/projects/:id/tasks' exact component={ TasksView } />
           <Route path='/about' exact component={ AboutView } />
