@@ -15,6 +15,10 @@ class ProjectsView extends React.Component {
     showMissingParametersMsg: false
   }
 
+  componentDidMount() {
+    this.setState({ projects: fakeDb.getProjectList() })
+  }
+
   openModal = () => {
     this.showMissingParameters(false)
     this.toggleCreateProjectModal(true)
@@ -40,16 +44,14 @@ class ProjectsView extends React.Component {
 
   insertProject = project => {
     fakeDb.insertProject( project )
-    this.setState({ projects: [... fakeDb.getProjectList()] })
+    this.setState({ projects: [...fakeDb.getProjectList()] })
   }
 
   showMissingParameters = show => {
     this.setState({ showMissingParametersMsg: show })
   }
 
-  componentDidMount() {
-    this.setState({ projects: fakeDb.getProjectList() })
-  }
+  
 
   render() {
     const { projects, 
